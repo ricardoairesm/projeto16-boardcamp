@@ -13,7 +13,7 @@ export async function listarClientes(req, res) {
 }
 
 export async function buscarCLienteId(req, res) {
-    const id = req.params;
+    const {id} = req.params;
     try {
         const cliente = await db.query('SELECT * FROM customers where "id" = $1', [id]);
         if (cliente.rowCount.length === 0) {
@@ -29,7 +29,7 @@ export async function inserirCliente(req, res) {
     const { name, phone, cpf, birthday } = req.body;
     try{
         if(!validData(clienteSchema, req.body)) {
-            return res.sendStatus(409);
+            return res.sendStatus(400);
         }
         const checkCliente = await db.query('SELECT * FROM customers where "cpf" = $1', [cpf] )
         if(checkCliente.rows.length != 0){
@@ -44,8 +44,11 @@ export async function inserirCliente(req, res) {
 
 export async function atualizarCliente(req,res){
     const { name, phone, cpf, birthday } = req.body;
-    const id = req.params;
+    const {id} = req.params;
     try{
+        if(!validData(clienteSchema, req.body)) {
+            return res.sendStatus(400);
+        }
         const checkCpf = await db.query('SELECT id FROM customers WHERE "id" != $1 AND "cpf" = $2', [id, cpf]);
         if(checkCpf.rows.length != 0){
             return res.sendStatus(409);
