@@ -8,7 +8,7 @@ export async function listarClientes(req, res) {
         const clientes = await db.query('SELECT * FROM customers');
         return res.send(clientes.rows);
     } catch (err) {
-        return res.status(500).send(err);
+        return res.sendStatus(500);;
     }
 }
 
@@ -21,7 +21,7 @@ export async function buscarCLienteId(req, res) {
         }
         return res.send(cliente.rows[0]);
     } catch (err) {
-        return res.status(500).send(err);
+        return res.sendStatus(500);;
     }
 }
 
@@ -38,7 +38,7 @@ export async function inserirCliente(req, res) {
         await db.query('INSERT INTO customers ("name", "phone", "cpf", "birthday") VALUES ($1, $2, $3, $4)', [name, phone, cpf, birthday]);
         return res.sendStatus(201);
     }catch (err) {
-        return res.status(500).send(err);
+        return res.sendStatus(500);;
     }
 }
 
@@ -56,6 +56,6 @@ export async function atualizarCliente(req,res){
         await db.query('UPDATE customers SET "name" = $1, "phone" = $2, "cpf" = $3, "birthday" = $4 WHERE "id" = $5', [name, phone, cpf, birthday, id]);
         return res.sendStatus(200);
     }catch (err) {
-        return res.status(500).send(err);
+        return res.sendStatus(500);
     }
 }
