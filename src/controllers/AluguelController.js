@@ -68,7 +68,9 @@ export async function finalizarAluguel(req, res) {
             return res.sendStatus(400);
         }
 
-  
+        if (!aluguel) {
+            return res.sendStatus(404);
+        }
 
         const dataRetorno = dayjs().format();
         const dataExpiracao = dayjs(aluguel.rentDate).add(aluguel.daysRented, 'day');
