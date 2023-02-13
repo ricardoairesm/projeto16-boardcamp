@@ -64,13 +64,11 @@ export async function finalizarAluguel(req, res) {
         let aluguel = await db.query('SELECT * FROM rentals WHERE "id" = $1', [id]);
         aluguel = aluguel.rows[0];
 
-        if (!aluguel) {
-            return res.sendStatus(404);
-        }
-
         if (aluguel.returnDate) {
             return res.sendStatus(400);
         }
+
+  
 
         const dataRetorno = dayjs().format();
         const dataExpiracao = dayjs(aluguel.rentDate).add(aluguel.daysRented, 'day');
