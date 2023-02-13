@@ -16,10 +16,10 @@ export async function buscarCLienteId(req, res) {
     const {id} = req.params;
     try {
         const cliente = await db.query('SELECT * FROM customers where "id" = $1', [id]);
-        if (cliente.rowCount.length === 0) {
+        if (cliente.rows.length === 0) {
             return res.sendStatus(404);
         }
-        return res.send(customer.rows[0]);
+        return res.send(cliente.rows[0]);
     } catch (err) {
         return res.status(500).send(err);
     }
