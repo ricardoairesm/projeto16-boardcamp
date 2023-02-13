@@ -21,7 +21,7 @@ router.put('/customers/:id', atualizarCliente);
 router.get('/rentals',listarAlugueis);
 router.post('/rentals',inserirAluguel);
 router.post('/rentals/:id/return',finalizarAluguel);
-router.delete('/rentals:id',apagarAluguel);
+router.delete('/rentals/:id',apagarAluguel);
 
 
 export default router;
