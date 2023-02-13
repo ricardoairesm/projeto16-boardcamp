@@ -1,5 +1,5 @@
-import db from "../config/database";
-import clienteSchema from "../schemas/clienteSchema";
+import db from "../config/database.js";
+import clienteSchema from "../schemas/clienteSchema.js";
 
 const validData = (schema, data) => !schema.validate(data).error;
 

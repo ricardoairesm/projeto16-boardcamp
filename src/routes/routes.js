@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 
-import { listarClientes, atualizarCliente, inserirCliente, buscarCLienteId } from '../controllers/ClientController';
+import { listarClientes, atualizarCliente, inserirCliente, buscarCLienteId } from '../controllers/ClientController.js';
 
 
 const router = express.Router();
